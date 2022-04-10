@@ -26,3 +26,12 @@ export const updateInfluencer = (id, influencer) => async (dispatch) => {
     console.log(err)
   }
 }
+
+export const deleteInfluencer = (id) => async (dispatch) => {
+  try {
+    await api.deleteInfluencer(id)
+    dispatch({ type: 'DELETE', payload: id })
+  } catch (err) {
+    console.log(err)
+  }
+}

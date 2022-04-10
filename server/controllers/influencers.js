@@ -36,3 +36,18 @@ export const updateInfluencer = async (request, response) => {
     return response.status(404).send('There is no influencer with that id')
   }
 }
+
+export const deleteInfluencer = async (request, response) => {
+  const { id } = request.params
+
+  if (mongoose.Types.ObjectId.isValid(id)) {
+    try {
+      await Influencer.findByIdAndRemove({_id: id})
+      response.json({ message: 'Influencer deleted successfully' })
+    } catch (err) {
+      response.status(409).json({ message: err.message})
+    }
+  } else {
+    return response.status(404).send('There is no influencer with that id')
+  }
+}

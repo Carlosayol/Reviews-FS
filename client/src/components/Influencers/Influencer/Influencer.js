@@ -6,14 +6,15 @@ import {
   CardMedia,
   Typography,
 } from "@material-ui/core";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import DeleteIcon from "@material-ui/icons/Delete";
 import BorderColorIcon from "@material-ui/icons/BorderColor";
+import { useDispatch } from "react-redux";
 
 import useStyles from "./styles";
+import { deleteInfluencer } from "../../../actions/influencers";
 
 const Influencer = ({ influencer, setSelectedId }) => {
-  console.log(influencer);
+  const dispatch = useDispatch()
   const classes = useStyles();
 
   return (
@@ -48,7 +49,7 @@ const Influencer = ({ influencer, setSelectedId }) => {
         <Button size="small" color="primary" onClick={() => setSelectedId(influencer._id)}>
           <BorderColorIcon fontSize="small" />
         </Button>
-        <Button size="small" color="primary" onClick={() => {}}>
+        <Button size="small" color="primary" onClick={() => dispatch(deleteInfluencer(influencer._id))}>
           <DeleteIcon fontSize="small" />
         </Button>
       </CardActions>
