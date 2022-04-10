@@ -75,7 +75,7 @@ const Form = ({ selectedId, setSelectedId }) => {
           fullWidth
           value={formData.locations}
           onChange={(e) =>
-            setFormData({ ...formData, locations: e.target.value })
+            setFormData({ ...formData, locations: e.target.value.split(',') })
           }
         />
         <TextField
@@ -84,7 +84,7 @@ const Form = ({ selectedId, setSelectedId }) => {
           label="Tag/s"
           fullWidth
           value={formData.tags}
-          onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
+          onChange={(e) => setFormData({ ...formData, tags: e.target.value.split(',') })}
         />
         <TextField
           name="followerCount"
