@@ -1,12 +1,14 @@
+import { CREATE, DELETE, FETCH_ALL, UPDATE } from "../constants/actionTypes"
+
 export default (influencers = [], action) => {
   switch(action.type) {
-    case 'FETCH_ALL':
+    case FETCH_ALL:
       return action.payload
-    case 'CREATE':
+    case CREATE:
       return [...influencers, action.payload]
-    case 'UPDATE':
+    case UPDATE:
       return influencers.map((influencer) => (influencer._id === action.payload._id ? action.payload : influencer))
-    case 'DELETE':
+    case DELETE:
       return influencers.filter((influencer) => influencer._id !== action.payload)
     default:
       return influencers
