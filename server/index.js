@@ -14,6 +14,10 @@ app.use(cors())
 
 app.use('/influencers', influencersRoutes)
 
+app.get('/', (request, response) => {
+  response.send("Hello to this API")
+})
+
 const PORT = process.env.PORT || 8000
 
 mongoose.connect(process.env.CONNECTION_URL)

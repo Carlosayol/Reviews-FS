@@ -1,4 +1,9 @@
 {
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "checkJs": true,
+    "jsx": "react"
+  },
   "dependencies": {
     "dotenv": "^16.0.0"
   }

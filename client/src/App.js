@@ -1,47 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { Container, Typography, Grow, Grid, AppBar } from "@material-ui/core";
-import { useDispatch } from "react-redux";
-
-import { getInfluencers } from "./actions/influencers";
-import Influencers from "./components/Influencers/Influencers";
-import Form from "./components/Form/Form";
-import useStyles from "./styles";
+import React from "react";
+import { Container } from "@material-ui/core";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./components/Home/Home"
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 const App = () => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const [selectedId, setSelectedId] = useState(null);
-
-  useEffect(() => {
-    dispatch(getInfluencers());
-  }, [selectedId, dispatch]);
 
   return (
-    <Container maxWidth="lg">
-      <AppBar className={classes.appBar} position="static" color="inherit">
-        <Typography className={classes.heading} variant="h2" align="center">
-          Influencers
-        </Typography>
-      </AppBar>
-      <Grow in>
-        <Container>
-          <Grid
-            className={classes.mainContainer}
-            container
-            justifyContent="space-between"
-            alignContent="stretch"
-            spacing={3}
-          >
-            <Grid item xs={12} sm={7}>
-              <Influencers setSelectedId={setSelectedId} />
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Form selectedId={selectedId} setSelectedId={setSelectedId} />
-            </Grid>
-          </Grid>
-        </Container>
-      </Grow>
-    </Container>
+    <BrowserRouter>
+      <Container maxWidth="lg">
+        <Navbar />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/auth" exact component={Auth} />
+        </Switch>
+        <Home />
+      </Container>
+    </BrowserRouter>
   );
 };
 
