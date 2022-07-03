@@ -4,37 +4,36 @@ import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 
 import useStyles from "./styles";
-import { createInfluencer, updateInfluencer } from '../../actions/influencers';
+import { createReview, updateReview } from '../../actions/reviews';
 
 const Form = ({ selectedId, setSelectedId }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const influencer = useSelector((state) =>
+  const review = useSelector((state) =>
     selectedId
-      ? state.influencers.find((i) => i._id === selectedId)
+      ? state.reviews.find((i) => i._id === selectedId)
       : null
   );
   const [formData, setFormData] = useState({
     name: "",
-    locations: "",
     tags: "",
     image: "",
-    followerCount: 0,
+    score: 0,
   });
 
   useEffect(() => {
-    if (influencer) {
-      setFormData(influencer);
+    if (review) {
+      setFormData(review);
     }
-  }, [influencer]);
+  }, [review]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (selectedId) {
-      dispatch(updateInfluencer(selectedId, formData));
+      dispatch(updateReview(selectedId, formData));
     } else {
-      dispatch(createInfluencer(formData));
+      dispatch(createReview(formData));
     }
     clear();
   };
@@ -44,10 +43,9 @@ const Form = ({ selectedId, setSelectedId }) => {
     setSelectedId(null)
     setFormData({
       name: "",
-      locations: "",
       tags: "",
       image: "",
-      followerCount: 0,
+      score: 0,
     });
   };
 
@@ -59,7 +57,7 @@ const Form = ({ selectedId, setSelectedId }) => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">{selectedId ? 'Update an Influencer' : 'Create a new Influencer'}</Typography>
+        <Typography variant="h6">{selectedId ? 'Update a Review' : 'Create a new Review'}</Typography>
         <TextField
           name="name"
           variant="outlined"
@@ -67,16 +65,6 @@ const Form = ({ selectedId, setSelectedId }) => {
           fullWidth
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-        />
-        <TextField
-          name="locations"
-          variant="outlined"
-          label="Location/s"
-          fullWidth
-          value={formData.locations}
-          onChange={(e) =>
-            setFormData({ ...formData, locations: e.target.value.split(',') })
-          }
         />
         <TextField
           name="tags"
@@ -87,14 +75,14 @@ const Form = ({ selectedId, setSelectedId }) => {
           onChange={(e) => setFormData({ ...formData, tags: e.target.value.split(',') })}
         />
         <TextField
-          name="followerCount"
+          name="score"
           variant="outlined"
-          label="Followers"
+          label="Score"
           type="number"
           fullWidth
-          value={formData.followerCount}
+          value={formData.score}
           onChange={(e) =>
-            setFormData({ ...formData, followerCount: e.target.value })
+            setFormData({ ...formData, score: e.target.value })
           }
         />
         <div className={classes.fileInput}>

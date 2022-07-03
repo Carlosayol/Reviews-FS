@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 const reviewSchema = mongoose.Schema({
   name: String,
   tags: [String],
-  likes: Number,
+  score: Number,
   image: String,
   createdAt: {
     type: Date,

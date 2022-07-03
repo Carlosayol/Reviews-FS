@@ -1,8 +1,8 @@
 import React, {useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { getInfluencers } from "../../actions/influencers";
-import Influencers from "../Influencers/Influencers";
+import { getReviews } from "../../actions/reviews";
+import Reviews from "../Reviews/Reviews";
 import Form from "../Form/Form";
 import { Container, Grow, Grid } from "@material-ui/core";
 
@@ -14,7 +14,7 @@ const Home = () => {
   const [selectedId, setSelectedId] = useState(null);
 
   useEffect(() => {
-    dispatch(getInfluencers());
+    dispatch(getReviews());
   }, [selectedId, dispatch]);
 
   return (
@@ -28,7 +28,7 @@ const Home = () => {
         spacing={3}
       >
         <Grid item xs={12} sm={7}>
-          <Influencers setSelectedId={setSelectedId} />
+          <Reviews setSelectedId={setSelectedId} />
         </Grid>
         <Grid item xs={12} sm={4}>
           <Form selectedId={selectedId} setSelectedId={setSelectedId} />

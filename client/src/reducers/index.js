@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import influencers from './influencers'
+import reviews from './reviews'
 
 export const reducers = combineReducers({
-  influencers,
+  reviews,
 })

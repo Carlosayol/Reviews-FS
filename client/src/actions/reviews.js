@@ -1,36 +1,36 @@
 import * as api from '../api'
 import { CREATE, DELETE, FETCH_ALL, UPDATE } from '../constants/actionTypes'
 
-export const getInfluencers = () => async (dispatch) => {
+export const getReviews = () => async (dispatch) => {
   try {
-    const { data } = await api.fetchInfluencers()
+    const { data } = await api.fetchReviews()
     dispatch({ type: FETCH_ALL, payload: data })
   } catch (err) {
     console.log(err.message)
   }
 }
 
-export const createInfluencer = (influencer) => async (dispatch) => {
+export const createReview = (review) => async (dispatch) => {
   try {
-    const { data } = await api.createInfluencer(influencer)
+    const { data } = await api.createReview(review)
     dispatch({ type: CREATE, payload: data })
   } catch (err) {
     console.log(err.message)
   }
 }
 
-export const updateInfluencer = (id, influencer) => async (dispatch) => {
+export const updateReview = (id, review) => async (dispatch) => {
   try {
-    const { data } = await api.updateInfluencer(id, influencer)
+    const { data } = await api.updateReview(id, review)
     dispatch({ type: UPDATE, payload: data })
   } catch (err) {
     console.log(err)
   }
 }
 
-export const deleteInfluencer = (id) => async (dispatch) => {
+export const deleteReview = (id) => async (dispatch) => {
   try {
-    await api.deleteInfluencer(id)
+    await api.deleteReview(id)
     dispatch({ type: DELETE, payload: id })
   } catch (err) {
     console.log(err)

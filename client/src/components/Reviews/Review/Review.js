@@ -11,9 +11,9 @@ import BorderColorIcon from "@material-ui/icons/BorderColor";
 import { useDispatch } from "react-redux";
 
 import useStyles from "./styles";
-import { deleteInfluencer } from "../../../actions/influencers";
+import { deleteReview } from "../../../actions/reviews";
 
-const Influencer = ({ influencer, setSelectedId }) => {
+const Review = ({ review, setSelectedId }) => {
   const dispatch = useDispatch()
   const classes = useStyles();
 
@@ -21,11 +21,11 @@ const Influencer = ({ influencer, setSelectedId }) => {
     <Card className={classes.card}>
       <CardMedia
         className={classes.media}
-        image={influencer.image}
-        title={influencer.name}
+        image={review.image}
+        title={review.name}
       />
       <div className={classes.overlay}>
-        <Typography variant="h6">{influencer.name}</Typography>
+        <Typography variant="h6">{review.name}</Typography>
       </div>
       <Typography
         className={classes.title}
@@ -33,23 +33,18 @@ const Influencer = ({ influencer, setSelectedId }) => {
         variant="h5"
         component="h2"
       >
-        {influencer.followerCount} Follower/s
+        {review.score}
       </Typography>
       <div className={classes.details}>
         <Typography variant="body2" color="textSecondary">
-          {influencer.tags.map((tag) => `#${tag} `)}
-        </Typography>
-      </div>
-      <div className={classes.details}>
-        <Typography variant="body2" color="textSecondary">
-          {influencer.locations.map((location) => `${location} `)}
+          {review.tags.map((tag) => `#${tag} `)}
         </Typography>
       </div>
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" onClick={() => setSelectedId(influencer._id)}>
+        <Button size="small" color="primary" onClick={() => setSelectedId(review._id)}>
           <BorderColorIcon fontSize="small" />
         </Button>
-        <Button size="small" color="primary" onClick={() => dispatch(deleteInfluencer(influencer._id))}>
+        <Button size="small" color="primary" onClick={() => dispatch(deleteReview(review._id))}>
           <DeleteIcon fontSize="small" />
         </Button>
       </CardActions>
@@ -57,4 +52,4 @@ const Influencer = ({ influencer, setSelectedId }) => {
   );
 };
 
-export default Influencer;
+export default Review;
