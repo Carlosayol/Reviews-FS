@@ -3,7 +3,7 @@ import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import influencersRoutes from './routes/influencers.js'
+import reviewsRoutes from './routes/reviews.js'
 
 const app = express()
 dotenv.config()
@@ -12,7 +12,7 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 app.use(cors())
 
-app.use('/influencers', influencersRoutes)
+app.use('/reviews', reviewsRoutes)
 
 app.get('/', (request, response) => {
   response.send("Hello to this API")
