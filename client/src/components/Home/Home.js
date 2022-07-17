@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { getReviews } from "../../actions/reviews";
@@ -19,24 +19,24 @@ const Home = () => {
 
   return (
     <Grow in>
-    <Container>
-      <Grid
-        className={classes.mainContainer}
-        container
-        justifyContent="space-between"
-        alignContent="stretch"
-        spacing={3}
-      >
-        <Grid item xs={12} sm={7}>
-          <Reviews setSelectedId={setSelectedId} />
+      <Container>
+        <Grid
+          className={classes.mainContainer}
+          container
+          justifyContent="space-between"
+          alignContent="stretch"
+          spacing={3}
+        >
+          <Grid item xs={12} sm={7}>
+            <Reviews setSelectedId={setSelectedId} />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Form selectedId={selectedId} setSelectedId={setSelectedId} />
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={4}>
-          <Form selectedId={selectedId} setSelectedId={setSelectedId} />
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
     </Grow>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
