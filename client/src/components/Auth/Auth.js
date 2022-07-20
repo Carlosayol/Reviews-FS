@@ -1,15 +1,27 @@
-import { Container, Paper, Avatar, Typography, Grid } from "@material-ui/core";
-import React from "react";
+import {
+  Container,
+  Paper,
+  Avatar,
+  Typography,
+  Grid,
+  Button,
+} from "@material-ui/core";
+import React, { useState } from "react";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "./styles";
 import Input from "./Input";
 
 const Auth = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const classes = useStyles();
   const isSignup = false;
 
   const handleSubmit = () => {};
   const handleChange = () => {};
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -37,7 +49,37 @@ const Auth = () => {
                 />
               </>
             )}
+            <Input
+              name="email"
+              label="Email Address"
+              handleChange={handleChange}
+              type="email"
+            />
+            <Input
+              name="password"
+              label="Password"
+              handleChange={handleChange}
+              type={showPassword ? "text" : "password"}
+              handleShowPassword={handleShowPassword}
+            />
+            {isSignup && (
+              <Input
+                name="confirmPassword"
+                label="Repeat Password"
+                handleChange={handleChange}
+                type="password"
+              />
+            )}
           </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            {isSignup ? "Sign Up" : "Sign In"}
+          </Button>
         </form>
       </Paper>
     </Container>
