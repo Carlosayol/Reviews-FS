@@ -6,21 +6,35 @@ import {
   Grid,
   Button,
 } from "@material-ui/core";
+import { GoogleLogin } from "react-google-login";
 import React, { useState } from "react";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "./styles";
 import Input from "./Input";
+import Icon from "./icon";
 
 const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [isSignup, setIsSignup] = useState(false);
 
   const classes = useStyles();
-  const isSignup = false;
 
   const handleSubmit = () => {};
   const handleChange = () => {};
+
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
+  };
+
+  const switchMode = () => {
+    setIsSignup(!isSignup);
+    setShowPassword(false);
+  };
+
+  const googleSuccess = () => {};
+
+  const googleFailure = () => {
+    console.log("Google Sign In was unsuccessful");
   };
 
   return (
@@ -71,6 +85,25 @@ const Auth = () => {
               />
             )}
           </Grid>
+          <GoogleLogin
+            clientId="HOLA"
+            render={(renderProps) => (
+              <Button
+                className={classes.googleButton}
+                color="primary"
+                fullWidth
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+                startIcon={<Icon />}
+                variant="contained"
+              >
+                Google Sign In
+              </Button>
+            )}
+            onSuccess={googleSuccess}
+            onFailure={googleFailure}
+            cookiePolicy="single_host_origin"
+          />
           <Button
             type="submit"
             fullWidth
@@ -80,6 +113,15 @@ const Auth = () => {
           >
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Button onClick={switchMode}>
+                {isSignup
+                  ? "Already have an account? Sign In"
+                  : "Don't have an account? Sign Up"}
+              </Button>
+            </Grid>
+          </Grid>
         </form>
       </Paper>
     </Container>
