@@ -5,39 +5,38 @@ import {
   Typography,
   Grid,
   Button,
-} from "@material-ui/core";
-import { GoogleLogin, googleLogout } from "@react-oauth/google";
-import React, { useState } from "react";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import useStyles from "./styles";
-import Input from "./Input";
-import Icon from "./icon";
+} from "@material-ui/core"
+import { GoogleLogin } from "@react-oauth/google"
+import React, { useState } from "react"
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
+import useStyles from "./styles"
+import Input from "./Input"
 
 const Auth = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [isSignup, setIsSignup] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
+  const [isSignup, setIsSignup] = useState(false)
 
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const handleSubmit = () => {};
-  const handleChange = () => {};
+  const handleSubmit = () => {}
+  const handleChange = () => {}
 
   const handleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
+    setShowPassword(!showPassword)
+  }
 
   const switchMode = () => {
-    setIsSignup(!isSignup);
-    setShowPassword(false);
-  };
+    setIsSignup(!isSignup)
+    setShowPassword(false)
+  }
 
   const googleSuccess = (res) => {
-    console.log(res);
-  };
+    console.log(res)
+  }
 
   const googleFailure = () => {
-    console.log("Google Sign In was unsuccessful");
-  };
+    console.log("Google Sign In was unsuccessful")
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -109,7 +108,7 @@ const Auth = () => {
         </form>
       </Paper>
     </Container>
-  );
-};
+  )
+}
 
-export default Auth;
+export default Auth

@@ -1,12 +1,12 @@
-import React from "react";
-import { Typography, AppBar, Toolbar, Avatar, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import useStyles from "./styles";
+import React from "react"
+import { Typography, AppBar, Toolbar, Avatar, Button } from "@material-ui/core"
+import { Link } from "react-router-dom"
+import useStyles from "./styles"
 
 const Navbar = () => {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const user = null;
+  const user = null
 
   return (
     <div>
@@ -19,7 +19,7 @@ const Navbar = () => {
             variant="h2"
             align="center"
           >
-            Influencers
+            Reviews
           </Typography>
         </div>
         <Toolbar className={classes.toolbar}>
@@ -52,7 +52,7 @@ const Navbar = () => {
         </Toolbar>
       </AppBar>
     </div>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
